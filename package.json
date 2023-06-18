@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "blockchain payroll implementation using moonbeam precompiles",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd lib && npm run gen-types"
+    "postinstall": "cd lib && yarn gen-types"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "site"
   ],
   "author": "zianskm",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/zianksm/blockroll/issues"
   },

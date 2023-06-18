@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "gen-types": "typechain --target ethers-v5 --out-dir src/types/contracts/ src/contracts/*.json",
+    "gen-types": "npx typechain --target ethers-v5 --out-dir src/types/contracts/ src/contracts/*.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "typechain": "^8.2.0"
   },
