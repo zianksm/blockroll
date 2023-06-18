@@ -1,9 +1,10 @@
-import { BigNumberish, BytesLike, Signer } from "ethers";
+import { BigNumberish, Signer, BytesLike } from "ethers";
 import * as payrollContract from "./types/contracts";
 
 const MOONBEAM_PRECOMPILE_CONTRACT_ADDRESS =
   "0x0000000000000000000000000000000000000808";
 
+// TODO: This is a hack to get around the fact that ethers doesn't export BytesLike type.
 const DEFAULT_CALLDATA: BytesLike[] = [];
 const DEFAULT_GAS_LIMIT: BigNumberish[] = [];
 
