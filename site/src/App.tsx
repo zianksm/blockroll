@@ -6,7 +6,6 @@ import * as lib from "blockroll-lib";
 
 function App() {
   const [count, setCount] = useState(0)
-lib.
   return (
     <>
       <div>
