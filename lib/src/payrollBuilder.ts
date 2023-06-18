@@ -1,22 +1,32 @@
 import { BigNumberish, Signer, ethers } from "ethers";
 import { Employee } from "./type";
 import { Payroll } from "./payroll";
-import { map_employee_to_contract_arguments } from "./helper";
+
+type InternalEmployee = {
+  address: string;
+  salary: BigNumberish;
+};
 
 export class PayrollBuilder {
-  private employee: Employee[] = [];
+  private to: string[] = [];
+  private value: BigNumberish[] = [];
   private signer: Signer | undefined = undefined;
 
   public addEmployee(employee: Employee | Employee[]) {
     const _employee = structuredClone(employee);
+    const employees = Array.isArray(_employee) ? _employee : [_employee];
 
-    if (Array.isArray(_employee)) {
-      this.employee = [...this.employee, ..._employee];
-    } else {
-      this.employee.push(_employee);
-    }
+    this.add(employees);
 
     return this;
+  }
+
+  private add(employee: Employee[]) {
+    employee.forEach((_employee) => {
+      const employee = to_internal_employee(_employee);
+      this.to.push(employee.address);
+      this.value.push(employee.salary);
+    });
   }
 
   public setSigner(signer: Signer) {
@@ -29,8 +39,16 @@ export class PayrollBuilder {
       throw new Error("Signer is not set");
     }
 
-    const [to, value] = map_employee_to_contract_arguments(this.employee);
-
-    return new Payroll(this.signer, to, value);
+    return new Payroll(this.signer, this.to, this.value);
   }
+}
+function to_internal_employee(employee: Employee): InternalEmployee {
+  return {
+    address: employee.address,
+    salary: toBigNumber(employee.salary),
+  };
+}
+
+function toBigNumber(value: string) {
+  return ethers.utils.parseEther(value);
 }
