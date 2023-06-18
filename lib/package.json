@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "types": "",
+  "typings": "dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "gen-types": "npx typechain --target ethers-v5 --out-dir src/types/contracts/ src/contracts/*.json",
     "build": "npx tsc",
