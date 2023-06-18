@@ -1,6 +1,7 @@
-import { BigNumberish, Signer, ethers } from "ethers";
+import { Signer, ethers } from "ethers";
 import { Employee } from "./type";
 import { Payroll } from "./payroll";
+import { BigNumberish } from "ethers/utils";
 
 type InternalEmployee = {
   address: string;
