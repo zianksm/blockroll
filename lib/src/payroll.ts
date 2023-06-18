@@ -1,29 +1,29 @@
 import { BigNumberish, BytesLike, Signer } from "ethers";
 import * as payrollContract from "./types/contracts";
 
+const MOONBEAM_PRECOMPILE_CONTRACT_ADDRESS =
+  "0x0000000000000000000000000000000000000808";
+
+const DEFAULT_CALLDATA: BytesLike[] = [];
+const DEFAULT_GAS_LIMIT: BigNumberish[] = [];
+
 export class Payroll {
-  private address: string;
+  private precompile_contract_address: string;
   private signer: Signer;
   private to: string[];
   private value: BigNumberish[];
 
-  constructor(
-    address: string,
-    signer: Signer,
-    to: string[],
-    value: BigNumberish[]
-  ) {
-    this.address = address;
+  constructor(signer: Signer, to: string[], value: BigNumberish[]) {
+    this.precompile_contract_address = MOONBEAM_PRECOMPILE_CONTRACT_ADDRESS;
     this.signer = signer;
     this.to = to;
     this.value = value;
   }
 
-  public async send() {
+  public async execute() {
     const contract = this.connectToContract();
 
-    const DEFAULT_CALLDATA: BytesLike[] = [];
-    const DEFAULT_GAS_LIMIT: BigNumberish[] = [];
+    await this.dry_run(contract, this.to, this.value);
 
     const send_payroll = await contract.batchAll(
       this.to,
@@ -37,9 +37,22 @@ export class Payroll {
     return receipt;
   }
 
+  private dry_run(
+    contract: payrollContract.BatchPrecompileInterface,
+    to: string[],
+    value: BigNumberish[]
+  ) {
+    return contract.callStatic.batchAll(
+      to,
+      value,
+      DEFAULT_CALLDATA,
+      DEFAULT_GAS_LIMIT
+    );
+  }
+
   private connectToContract() {
     return payrollContract.BatchPrecompileInterface__factory.connect(
-      this.address,
+      this.precompile_contract_address,
       this.signer
     );
   }
