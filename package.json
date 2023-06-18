@@ -1,0 +1,32 @@
+{
+  "name": "blockroll",
+  "version": "1.0.0",
+  "description": "blockchain payroll implementation using moonbeam precompiles",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd lib && yarn init-lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zianksm/blockroll.git"
+  },
+  "keywords": [
+    "moonbeam",
+    "hackathon",
+    "blockchain",
+    "payroll",
+    "typescript"
+  ],
+  "workspaces": [
+    "lib",
+    "site"
+  ],
+  "author": "zianskm",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/zianksm/blockroll/issues"
+  },
+  "homepage": "https://github.com/zianksm/blockroll#readme"
+}
