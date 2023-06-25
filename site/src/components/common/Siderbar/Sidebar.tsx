@@ -10,11 +10,16 @@ import { Role } from '../../../apiHandlers/baseInterface';
 export interface SidebarProps {
   isShow: boolean;
   role: Role | null;
+  showSidebar: (show: boolean) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
-  const { isShow, role } = props;
+  const { isShow, role, showSidebar } = props;
   const router = useRouter();
+
+  const toggleSidebar = () => {
+    showSidebar(!isShow);
+  };
 
   // Define the menu items based on the user's role
 
@@ -25,28 +30,8 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
       icon: '/assets/Icons/Vector.svg',
     },
     {
-      title: 'Jadwal Program',
-      path: '/schedule/schedule',
-      icon: '/assets/Icons/Vector1.svg',
-    },
-    {
-      title: 'Daftar Tagihan',
-      path: '/invoice/invoice',
-      icon: '/assets/Icons/Vector2.svg',
-    },
-    {
-      title: 'Kontak Guru',
-      path: '/kontak-guru',
-      icon: '/assets/Icons/Vector3.svg',
-    },
-    {
-      title: 'Ujian Online',
-      path: '/ujian-online',
-      icon: '/assets/Icons/Vector4.svg',
-    },
-    {
-      title: 'Forum Diskusi',
-      path: '/forum-diskusi',
+      title: 'Employees',
+      path: '/employees',
       icon: '/assets/Icons/Vector5.svg',
     },
   ];
@@ -69,8 +54,14 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
     >
       {/* Menu */}
       <ul className="space-y-6 ">
-        <li>
+        <li className="flex justify-between mt-7">
           <img src="/assets/blockLogo.svg" alt="" />
+          <img
+            src="/assets/Icons/circleLeft.svg"
+            alt=""
+            onClick={toggleSidebar}
+            className="cursor-pointer"
+          />
         </li>
         <li>
           <input
@@ -86,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
               <a
                 className={`flex items-center block py-2 px-4 rounded-md ${
                   router.pathname === item.path
-                    ? 'bg-[#FFF200] text-black font-semibold'
+                    ? 'bg-[#2C90D1] text-white font-semibold'
                     : ''
                 }`}
               >
@@ -102,20 +93,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
           </li>
         ))}
         <li>
-          <hr className="border-t border-gray-300 my-2 w-[200px] mx-auto" />
-        </li>
-        <li className="">
-          <button onClick={onLogout}>
-            <a className={`flex items-center block py-2 px-4 rounded-md`}>
-              <img
-                src="/assets/Icons/signOut.svg"
-                alt=""
-                className="w-4 h-4 mr-2"
-              />{' '}
-              {/* Replace with the appropriate width and height */}
-              Keluar
-            </a>
-          </button>
+          <hr className="border-t border-white my-2 w-[200px] mx-auto" />
         </li>
       </ul>
     </div>

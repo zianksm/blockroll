@@ -37,6 +37,7 @@ export const CommonLayout: FC<CommonLayoutProps> = ({
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
+    console.log('is open', isSidebarOpen);
   };
   if (disableLayout === true) {
     return <main className="flex min-h-screen p-8 my-auto ">{children}</main>; // Return only the children without the layout
@@ -63,12 +64,16 @@ export const CommonLayout: FC<CommonLayoutProps> = ({
             </>
           ) : (
             <>
-              {/* <Navbar
+              <Navbar
                 showSidebar={toggleSidebar}
                 isShow={isSidebarOpen}
                 role={role}
-              /> */}
-              <Sidebar isShow={isSidebarOpen} role={role} />
+              />
+              <Sidebar
+                isShow={isSidebarOpen}
+                role={role}
+                showSidebar={toggleSidebar}
+              />
               <main
                 className={
                   isSidebarOpen

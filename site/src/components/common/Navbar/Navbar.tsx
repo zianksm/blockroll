@@ -63,11 +63,11 @@ const Navbar: React.FC<NavbarProps> = ({ showSidebar, isShow, role }) => {
   };
 
   return (
-    <nav className="flex relative z-20 items-center justify-between sm:justify-between bg-[#FFF200] p-4 px-8">
+    <nav className="flex relative z-20 items-center justify-between sm:justify-between bg-[#2C90D1] p-4 px-8">
       <div className="flex items-center max-w-[160px] w-full ">
         {/* Logo */}
         <div className="text-black font-semibold text-lg  w-full">
-          Einstein Medical
+          <img src="/assets/Icons/logoBlockWhite.svg" alt="" />
         </div>
       </div>
 
@@ -93,38 +93,6 @@ const Navbar: React.FC<NavbarProps> = ({ showSidebar, isShow, role }) => {
       </div>
 
       <div className="flex items-center ">
-        {/* Notification Icon */}
-        <div className="bg-white w-12 h-12 rounded-lg mx-2 justify-center items-center">
-          <img
-            src="/assets/Icons/notif.svg"
-            className="my-auto mx-auto h-full"
-            alt=""
-            width={18}
-            onClick={handleShowNotification}
-          />
-          {showNotification && (
-            <Notification handleShowNotification={handleShowNotification} />
-          )}
-        </div>
-
-        {/* User Icon */}
-        <div className="mx-2 flex  w-12 h-12 gap-4 rounded-lg max-w-[352px]">
-          <img
-            src="/assets/Icons/Profiles.svg"
-            className="my-auto mx-auto w-full h-full"
-            alt=""
-            onClick={handleShowProfile}
-          />
-          {showProfile && (
-            <Profile
-              role={role}
-              name={name}
-              email={email}
-              selectedStudent={selectedStudent}
-              handleStudentClick={handleStudentClick}
-            />
-          )}
-        </div>
         <div
           className="lg:hidden flex relative bg-white w-12 h-12 rounded-lg flex justify-center align-middle p-1 mx-2"
           onClick={toggleSidebar}
