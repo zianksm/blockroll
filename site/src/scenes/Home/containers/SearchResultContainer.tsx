@@ -1,6 +1,4 @@
 import { Formik } from 'formik';
-import CloseIcon from 'public/assets/CloseIcon';
-import ReloadIcon from 'public/assets/ReloadIcon';
 import { FC, useState } from 'react';
 
 // import ReloadIcon from '/assets/ReloadIcon.tsx';
@@ -101,14 +99,11 @@ const SearchResultContainer: FC<SearchResultComponentProps> = ({
                 className="flex flex-row w-[100%] justify-between items-center"
               >
                 <div className="flex flex-row items-center gap-[11px]">
-                  <ReloadIcon />
                   <label className="text-[14px] font-regular text-[#9E9FA2]">
                     teknik bedah mulut
                   </label>
                 </div>
-                <div onClick={() => handleDelete(item.id)}>
-                  <CloseIcon />
-                </div>
+                <div onClick={() => handleDelete(item.id)}></div>
               </div>
             ))}
           </div>

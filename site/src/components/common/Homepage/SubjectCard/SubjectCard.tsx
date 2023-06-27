@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import CreatorIcon from 'public/assets/CreatorIcon';
+// import CreatorIcon from 'public/assets/CreatorIcon';
 import { FC } from 'react';
 
 export interface SubjectCardProps {
@@ -68,7 +68,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         {isPlay ? (
           <>
             <div className="flex flex-row gap-[7px] items-center">
-              <CreatorIcon />
+              {/* <CreatorIcon /> */}
               <label className="text-[10px] font-normal text-[#38393A]">
                 dr. John Doe, S.Ked., Sp.G.
               </label>
@@ -77,7 +77,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         ) : (
           <>
             <div className="flex flex-row gap-[7px] items-center">
-              <CreatorIcon />
+              {/* <CreatorIcon /> */}
               <label className="text-[10px] font-normal text-[#38393A]">
                 dr. John Doe, S.Ked., Sp.G.
               </label>

@@ -1,7 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import Head from 'next/head';
 
-import { HomepageFooter } from '@/components/layouts/HompageFooter';
 import { NextPageWithLayout } from '@/types';
 
 import Cards from './components/Cards/Cards';

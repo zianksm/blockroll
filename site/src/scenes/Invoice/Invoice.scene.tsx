@@ -4,7 +4,6 @@ import Head from 'next/head';
 // import BookIcon from '@/assets/icons/book.svg';
 import Card from '@/components/common/Card';
 import CardPrivateOnline from '@/components/common/Homepage/CardPrivateOnline';
-import { HomepageFooter } from '@/components/layouts/HompageFooter';
 import { NextPageWithLayout } from '@/types';
 
 import Table from './components/Table';

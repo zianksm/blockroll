@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
-import CreatorIcon from 'public/assets/CreatorIcon';
+// import CreatorIcon from 'public/assets/CreatorIcon';
 import { FC } from 'react';
 
 export interface CardPrivateOnlineProps {
@@ -55,7 +55,7 @@ const CardPrivateOnline: FC<CardPrivateOnlineProps> = ({
         <label className="text-[18px] font-bold ">{price}</label>
 
         <div className="flex flex-row gap-[7px] items-center">
-          <CreatorIcon />
+          {/* <CreatorIcon /> */}
           <label className="text-[10px] font-normal text-[#38393A]">
             {instructorName}
           </label>

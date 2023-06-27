@@ -1,7 +1,4 @@
 import { Formik } from 'formik';
-import KelasOnlineIcon from 'public/assets/KelasOnlineIcon';
-import MateriOnlineIcon from 'public/assets/MateriOnlineIcon';
-import PrivateOnlineIcon from 'public/assets/PrivateOnlineIcon';
 import { FC, useState } from 'react';
 
 export interface SearchResultComponentProps {
@@ -32,9 +29,9 @@ const SearchResultComponent: FC<SearchResultComponentProps> = ({
     <div className=" min-w-[100vw] flex flex-col h-auto px-[12px] py-[16px] gap-[4px] bg-gradient-to-r from-[#FFFDDB]">
       <div className="flex flex-row w-[100%] gap-[8px]">
         <div>
-          {isPrivateService ? <PrivateOnlineIcon /> : null}
+          {/* {isPrivateService ? <PrivateOnlineIcon /> : null}
           {isMateriOnline ? <MateriOnlineIcon /> : null}
-          {isKelasOnline ? <KelasOnlineIcon /> : null}
+          {isKelasOnline ? <KelasOnlineIcon /> : null} */}
         </div>
         <label className="text-[10px] text-[#9E9FA2]">{categoryName}</label>
       </div>

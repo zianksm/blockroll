@@ -2,9 +2,6 @@
 import Head from 'next/head';
 
 import AuthBtnSubmit from '@/components/common/AuthButtonSubmit/AuthBtnSubmit';
-import EmailForm from '@/components/common/LoginForm/EmailForm/EmailForm';
-import LoginForm from '@/components/common/LoginForm/LoginForm';
-import PasswordForm from '@/components/common/LoginForm/PasswordForm';
 import { AuthHeader } from '@/components/layouts/AuthHeader/AuthHeader';
 import { NextPageWithLayout } from '@/types';
 
