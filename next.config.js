@@ -10,6 +10,9 @@ const nextConfig = {
     // Production Environment Variables
     NEXT_PUBLIC_API_PRODUCTION: '/',
   },
+  experimental: {
+    externalDir: true
+  }
 };
 
 module.exports = nextConfig;

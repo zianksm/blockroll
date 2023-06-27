@@ -1,5 +1,5 @@
-import { PayrollBuilder } from 'blockroll-lib';
 import React, { useState } from 'react';
+import { PayrollBuilder } from '../../../../../lib';
 
 interface ModalProps {
   closeModal: () => void;
