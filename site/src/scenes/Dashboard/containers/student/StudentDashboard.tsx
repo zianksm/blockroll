@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Table from '@/components/common/CardProgram/Card';
 
+import Modal from '../../components/dashboard/modal/Modal';
 import OverviewCard from '../../components/Schedule';
 
-export default function StudentDashboard() {
+export default function DashboardComponent() {
   const BuildingIcon = 'assets/Icons/employee.svg';
   const UserIcon = 'assets/Icons/salarymoney.svg';
   const moneyIcon = 'assets/Icons/codesandbox 1.svg';
@@ -57,6 +58,16 @@ export default function StudentDashboard() {
       address: '16iVs9qo657pCear655jv36VekYdD7ijn6nu8TT7quMMMxcW',
     },
   ];
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+    console.log('open');
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -65,12 +76,16 @@ export default function StudentDashboard() {
         <OverviewCard isTeacher={true} data={cards} />
         <Table data={tableData} isExam={true} />
         <div className="flex w-full justify-end">
-          <button className="flex justify-center items-center gap-4 w-[191px] bg-[#2C90D1] h-[50px] rounded-xl text-white mt-5">
+          <button
+            className="flex justify-center items-center gap-4 w-[191px] bg-[#2C90D1] h-[50px] rounded-xl text-white mt-5"
+            onClick={openModal}
+          >
             Add Employees
             <img src="/assets/Icons/plus 1.svg" alt="" />
           </button>
         </div>
       </div>
+      {isOpen && <Modal closeModal={closeModal} />}
     </>
   );
 }

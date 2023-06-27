@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Table from '@/components/common/CardProgram/Card';
 
 import Modal from '../../components/dashboard/modal/Modal';
+import OverviewCard from '../../components/Schedule';
 
 export default function DashboardComponent() {
   const BuildingIcon = 'assets/Icons/employee.svg';
@@ -61,6 +62,7 @@ export default function DashboardComponent() {
 
   const openModal = () => {
     setIsOpen(true);
+    console.log('open');
   };
 
   const closeModal = () => {
@@ -74,13 +76,13 @@ export default function DashboardComponent() {
         <OverviewCard isTeacher={true} data={cards} />
         <Table data={tableData} isExam={true} />
         <div className="flex w-full justify-end">
-          <button
+          {/* <button
             className="flex justify-center items-center gap-4 w-[191px] bg-[#2C90D1] h-[50px] rounded-xl text-white mt-5"
             onClick={openModal}
           >
             Add Employees
             <img src="/assets/Icons/plus 1.svg" alt="" />
-          </button>
+          </button> */}
         </div>
       </div>
       {isOpen && <Modal closeModal={closeModal} />}
