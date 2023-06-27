@@ -5,6 +5,7 @@
   "main": "index.js",
   "typings": "dist/src/index.d.ts",
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
