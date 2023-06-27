@@ -4,8 +4,6 @@ import { FC, useState } from 'react';
 
 import AuthBtnSubmit from '@/components/common/AuthButtonSubmit/AuthBtnSubmit';
 import VerificationPopUp from '@/components/common/VerificationPopUp/VerificationPopUp';
-import changePasswordValidationSchema from '@/lib/validation/changePassValidation';
-import loginValidationSchema from '@/lib/validation/loginValidation';
 
 export interface ChangePasswordFormProps {
   titleEmail?: string;
@@ -61,7 +59,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
   return (
     <Formik
       initialValues={formData}
-      validationSchema={changePasswordValidationSchema}
+      // validationSchema={changePasswordValidationSchema}
       onSubmit={handleChangePassword}
       // Pass the validation schema here
     >

@@ -15,6 +15,8 @@ const Dashboard: NextPageWithLayout = () => {
   const isRight = true;
   const [role, SetRole] = useState<Role | null>(null);
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <Head>

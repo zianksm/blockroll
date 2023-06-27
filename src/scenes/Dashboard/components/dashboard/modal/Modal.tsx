@@ -9,6 +9,8 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
   const [salary, setSalary] = useState('');
   const [address, setAddress] = useState('');
 
+  const newEmployee = new PayrollBuilder();
+
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary(event.target.value);
   };
@@ -16,19 +18,25 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
   };
-
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (!isValidDecimal(salary)) {
+      console.error('Invalid salary value:', salary);
+      return;
+    }
     const employee = {
       address: address,
       salary: salary,
     };
-    const addEmployee = new PayrollBuilder().addEmployee(employee);
-    console.log('new employee', addEmployee);
-    // Handle the form submission logic here
-    // You can access the name and address values using the name and address state variables
-    // Example: console.log(name, address);
+
+    await newEmployee.addEmployee(employee);
+    // Perform further operations with the employee object
+    // ...
     closeModal(); // Close the modal after form submission
+  };
+
+  const isValidDecimal = (value: string) => {
+    return !isNaN(parseFloat(value)) && isFinite(parseFloat(value));
   };
 
   return (
@@ -57,25 +65,25 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
                     <form onSubmit={handleSubmit}>
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
-                          Name
-                        </label>
-                        <input
-                          type="text"
-                          value={salary}
-                          onChange={handleSalaryChange}
-                          className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 border rounded-md h-[40px]"
-                          required
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <label className="block text-sm font-medium text-gray-700">
                           Address
                         </label>
                         <input
                           type="text"
                           value={address}
                           onChange={handleAddressChange}
-                          className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 border rounded-md h-[40px]"
+                          className="mt-1 px-4 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 border rounded-md h-[40px]"
+                          required
+                        />
+                      </div>
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-gray-700">
+                          Salary
+                        </label>
+                        <input
+                          type="number"
+                          value={salary}
+                          onChange={handleSalaryChange}
+                          className="mt-1 px-4 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 border rounded-md h-[40px]"
                           required
                         />
                       </div>

@@ -5,7 +5,6 @@ import { FC, useState } from 'react';
 import AuthBtnSubmit from '@/components/common/AuthButtonSubmit/AuthBtnSubmit';
 import VerificationPopUp from '@/components/common/VerificationPopUp';
 import { ForgotPasswordInterface } from '@/interfaces/Auth';
-import forgotPasswordValidationSchema from '@/lib/validation/forgotPassValidation';
 
 export interface ForgotPasswordFormProps {
   titleEmail: string;
@@ -55,7 +54,7 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({
   return (
     <Formik
       initialValues={formData}
-      validationSchema={forgotPasswordValidationSchema}
+      // validationSchema={forgotPasswordValidationSchema}
       onSubmit={handleForgotPass}
       // Pass the validation schema here
     >
