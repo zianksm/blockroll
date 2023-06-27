@@ -1,3 +1,4 @@
+import { PayrollBuilder } from 'blockroll-lib';
 import React, { useState } from 'react';
 
 interface ModalProps {
@@ -5,11 +6,11 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ closeModal }) => {
-  const [name, setName] = useState('');
+  const [salary, setSalary] = useState('');
   const [address, setAddress] = useState('');
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSalary(event.target.value);
   };
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +19,12 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const employee = {
+      address: address,
+      salary: salary,
+    };
+    const addEmployee = new PayrollBuilder().addEmployee(employee);
+    console.log('new employee', addEmployee);
     // Handle the form submission logic here
     // You can access the name and address values using the name and address state variables
     // Example: console.log(name, address);
@@ -54,8 +61,8 @@ const Modal: React.FC<ModalProps> = ({ closeModal }) => {
                         </label>
                         <input
                           type="text"
-                          value={name}
-                          onChange={handleNameChange}
+                          value={salary}
+                          onChange={handleSalaryChange}
                           className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 border rounded-md h-[40px]"
                           required
                         />
