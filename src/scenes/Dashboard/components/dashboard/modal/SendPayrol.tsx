@@ -1,24 +1,24 @@
-import build from 'next/dist/build';
+import { Signer } from 'ethers';
 import React, { useState } from 'react';
-import { PayrollBuilder } from '../../../../../lib';
+import { Payroll, PayrollBuilder } from '../../../../../lib';
 
 interface ModalProps {
   closeModal: () => void;
   signer?: any;
-  setEmployees?: (employess: string[]) => void;
+  accont?: String;
   setBuild: (build: any) => void;
+  isBuild: any;
 }
 
-const Modal: React.FC<ModalProps> = ({
+const SendModal: React.FC<ModalProps> = ({
   closeModal,
   signer,
-  setEmployees,
+  accont,
   setBuild,
+  isBuild,
 }) => {
   const [salary, setSalary] = useState('');
   const [address, setAddress] = useState('');
-
-  const newEmployee = new PayrollBuilder();
 
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary(event.target.value);
@@ -29,29 +29,20 @@ const Modal: React.FC<ModalProps> = ({
   };
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!isValidDecimal(salary)) {
-      console.error('Invalid salary value:', salary);
-      return;
-    }
-    const employee = {
-      address: address,
-      salary: salary,
-    };
 
-    const response = await newEmployee.addEmployee(employee);
-    console.log('response', response);
-    if (response) {
-      const signerSetter = await newEmployee.setSigner(signer);
-      console.log('signer is setted', signerSetter);
-      try {
-        const builder = await newEmployee.build();
-        setBuild(builder);
-      } catch (error) {
-        console.log('error', error);
-      }
+    try {
+      const to = isBuild.to;
+      const value = isBuild.value;
+
+      console.log('to', to);
+      console.log('value', value);
+
+      const send = await new Payroll(signer, to, value);
+      console.log('send', send);
+    } catch (error) {
+      console.error('error', error);
     }
-    // Perform further operations with the employee object
-    // ...
+
     closeModal(); // Close the modal after form submission
   };
 
@@ -79,7 +70,7 @@ const Modal: React.FC<ModalProps> = ({
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 flex-col flex w-full text-center sm:mt-0 sm:text-left">
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
-                    Add new employee
+                    Send Payroll
                   </h3>
                   <div className="mt-2">
                     <form onSubmit={handleSubmit}>
@@ -141,4 +132,4 @@ const Modal: React.FC<ModalProps> = ({
   );
 };
 
-export default Modal;
+export default SendModal;
